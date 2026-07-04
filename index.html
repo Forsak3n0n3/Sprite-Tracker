@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Sprite Tracker</title>
+    
+    <link rel="icon" type="image/png" href="siteimages/siteimage.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght=500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="sprites-data.js" defer></script>
+    <script src="share-utils.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <header class="fn-navbar">
+        <div class="brand-container">
+            <img src="siteimages/siteimage.png" alt="Mascot" class="brand-mascot">
+            <div class="brand-title">FORTNITE SPRITES TRACKER</div>
+        </div>
+        <div class="nav-controls-right">
+            <div class="progress-wrapper">
+                <div class="live-progress-box">
+                    <div class="live-progress-text">COLLECTION PROGRESS: <span id="live-counter-ratio">0 / 0</span></div>
+                    <div class="live-progress-bar-bg">
+                        <div class="live-progress-bar-fill" id="live-counter-bar"></div>
+                    </div>
+                </div>
+                <div class="live-progress-box">
+                    <div class="live-progress-text">MASTERY PROGRESS: <span id="mastery-counter-ratio">0 / 0</span></div>
+                    <div class="live-progress-bar-bg">
+                        <div class="live-progress-bar-fill mastery-fill" id="mastery-counter-bar"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="missing-image-btn" id="missingImageBtn">GENERATE MISSING SPRITES IMAGE</button>
+            <button class="image-btn" id="imageBtn">GENERATE COLLECTION IMAGE</button>
+            <button class="unmastered-image-btn" id="unmasteredImageBtn">GENERATE UNMASTERED SPRITES IMAGE</button>
+            <button class="mastered-image-btn" id="masteredImageBtn">GENERATE MASTERED SPRITES IMAGE</button>
+            <button class="share-btn" id="shareBtn">SHARE COLLECTION</button>
+        </div>
+    </header>
+
+    <div class="view-mode-banner" id="viewModeBanner" style="display: none;">
+        👀 VIEWING A SHARED COLLECTION. ITEMS ARE FILTERED TO SHOW COLLECTED ONLY.
+        <a href="index.html">GO TO MY PERSONAL TRACKER</a>
+    </div>
+
+    <div class="app-layout">
+        <div class="sidebar">
+            <aside class="panel-box">
+                <div class="filter-header">SEARCH BOX</div>
+                <input type="text" id="search" class="fn-input" placeholder="Type to search...">
+                
+                <div class="filter-header">FILTER BY THEME</div>
+                <select id="theme-filter" class="fn-select">
+                    <option value="all">ALL THEMES</option>
+                    <option value="Basic">BASIC</option>
+                    <option value="Gold">GOLD</option>
+                    <option value="Candy">GUMMY</option>
+                    <option value="Galaxy">GALAXY</option>
+                    <option value="Gem">GEM</option>
+                    <option value="Holofoil">HOLOFOIL</option>
+                    <option value="Rift">RIFT</option>
+                </select>
+
+				<div class="filter-header">COLLECTION PROGRESS</div>
+				<div class="toggle-container">
+					<button class="toggle-btn active" id="toggle-all">ALL</button>
+					<button class="toggle-btn" id="toggle-owned">OWNED</button>
+					<button class="toggle-btn" id="toggle-unowned">UNOWNED</button>
+				</div>
+
+				<div class="switch-row">
+					<span class="switch-label">HIDE MASTERED SPRITES</span>
+					<input type="checkbox" id="hide-mastered-switch" class="switch-input">
+				</div>
+
+				<div class="switch-row">
+					<span class="switch-label">GROUP BY THEME</span>
+					<input type="checkbox" id="group-theme-switch" class="switch-input">
+				</div>
+
+                <div class="switch-row">
+                    <span class="switch-label">SHOW UNRELEASED</span>
+                    <input type="checkbox" id="unreleased-switch" class="switch-input">
+                </div>
+
+                <div class="switch-row">
+                    <span class="switch-label">LOW FIDELITY MODE</span>
+                    <input type="checkbox" id="low-fidelity-switch" class="switch-input">
+                </div>
+            </aside>
+
+            <div class="panel-box creator-card">
+                <button class="close-creator-btn" id="closeCreatorBtn" title="Hide for this session">❌</button>
+                <div class="creator-title">Made by Nex</div>
+                <a href="https://discord.gg/79snnNgpeZ" class="creator-link" target="_blank">
+                    <img src="siteimages/creator.png" class="creator-img" alt="Discord" onerror="this.src='siteimages/creator.png'">
+                </a>
+                <a href="https://discord.gg/79snnNgpeZ" class="join-btn" target="_blank">Join Our Discord</a>
+                <div class="creator-subtext">
+                    I made this tracker for fun, I hope you enjoy it!
+                </div>
+            </div>
+        </div>
+
+        <main class="sprite-grid" id="spriteGrid"></main>
+    </div>
+</div>
+
+</body>
+</html>
