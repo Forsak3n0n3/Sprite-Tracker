@@ -22,6 +22,7 @@ if (isViewMode) {
 const spriteGrid = document.getElementById('spriteGrid');
 const searchInput = document.getElementById('search');
 const themeFilter = document.getElementById('theme-filter');
+const resetFiltersBtn = document.getElementById('reset-filters-btn');
 const unreleasedSwitch = document.getElementById('unreleased-switch');
 const shareBtn = document.getElementById('shareBtn');
 const imageBtn = document.getElementById('imageBtn');
@@ -91,6 +92,26 @@ toggleAll.addEventListener('click', () => setStatusFilter('all', toggleAll));
 toggleOwned.addEventListener('click', () => setStatusFilter('obtained', toggleOwned));
 toggleUnowned.addEventListener('click', () => setStatusFilter('missing', toggleUnowned));
 
+function resetFilters() {
+    searchInput.value = '';
+    themeFilter.value = 'all';
+    unreleasedSwitch.checked = false;
+    hideMasteredSwitch.checked = false;
+    groupThemeSwitch.checked = true;
+
+    localStorage.setItem('fn_state_search', '');
+    localStorage.setItem('fn_state_theme', 'all');
+    localStorage.setItem('fn_state_unreleased', 'false');
+    localStorage.setItem('fn_state_hide_mastered', 'false');
+    localStorage.setItem('fn_state_group_theme', 'true');
+
+    currentStatusFilter = 'all';
+    localStorage.setItem('fn_state_status_filter', 'all');
+    [toggleAll, toggleOwned, toggleUnowned].forEach(btn => btn.classList.remove('active'));
+    toggleAll.classList.add('active');
+    renderGrid();
+}
+
 // PERSISTENCE EVENT LISTENERS
 searchInput.addEventListener('input', () => {
     localStorage.setItem('fn_state_search', searchInput.value);
@@ -100,6 +121,7 @@ themeFilter.addEventListener('change', () => {
     localStorage.setItem('fn_state_theme', themeFilter.value);
     renderGrid();
 });
+resetFiltersBtn.addEventListener('click', resetFilters);
 unreleasedSwitch.addEventListener('change', () => {
     localStorage.setItem('fn_state_unreleased', unreleasedSwitch.checked);
     renderGrid();
@@ -214,6 +236,8 @@ function renderGrid() {
         itemsToRender = sortAndGroupSprites(itemsToRender);
     }
 
+    const renderedCards = [];
+
     itemsToRender.forEach(item => {
         const sprite = item.sprite;
         const isObtained = obtainedSprites.includes(sprite.id);
@@ -255,8 +279,21 @@ function renderGrid() {
                 toggleObtained(sprite.id, card);
             });
         }
-        spriteGrid.appendChild(card);
+        renderedCards.push(card);
     });
+
+    if (renderedCards.length === 0) {
+        const emptyState = document.createElement('div');
+        emptyState.className = 'empty-state';
+        emptyState.innerHTML = `
+            <div class="empty-state-title">NO SPRITES MATCH THESE FILTERS</div>
+            <p>Try clearing the filters or widening your search.</p>
+        `;
+        spriteGrid.appendChild(emptyState);
+    } else {
+        renderedCards.forEach(card => spriteGrid.appendChild(card));
+    }
+
     adjustCardFontSizes();
 }
 

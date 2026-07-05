@@ -196,13 +196,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: sticky;
+    top: 20px;
+    align-self: start;
 }
 
 .panel-box {
     background-color: var(--fn-panel-bg);
     border: 3px solid var(--fn-border);
     border-radius: 8px;
-    padding: 20px;
+    padding: 22px;
     box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
 }
 
@@ -213,6 +216,26 @@ body {
     font-style: italic;
 }
 
+.reset-filters-btn {
+    width: 100%;
+    background: linear-gradient(90deg, rgba(0,240,255,0.15), rgba(255,255,255,0.08));
+    border: 2px solid var(--fn-border);
+    color: #fff;
+    padding: 8px 10px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 14px;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.reset-filters-btn:hover {
+    transform: translateY(-1px);
+    border-color: var(--fn-neon-cyan);
+    background: linear-gradient(90deg, rgba(0,240,255,0.25), rgba(255,255,255,0.12));
+}
+
 .fn-input, .fn-select {
     width: 100%;
     background-color: #0e1117;
@@ -221,7 +244,13 @@ body {
     padding: 10px;
     font-size: 16px;
     border-radius: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.fn-input:hover, .fn-select:hover {
+    border-color: var(--fn-neon-cyan);
+    transform: translateY(-1px);
 }
 
 .toggle-container {
@@ -230,7 +259,7 @@ body {
     border: 2px solid var(--fn-border);
     border-radius: 4px;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .toggle-btn {
@@ -245,6 +274,11 @@ body {
     transition: all 0.15s ease-out;
 }
 
+.toggle-btn:hover {
+    background: rgba(0,240,255,0.12);
+    color: #fff;
+}
+
 .toggle-btn.active {
     background: var(--fn-neon-cyan);
     color: #000;
@@ -254,8 +288,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 2px;
-    margin-top: 4px;
+    padding: 8px 2px;
+    margin-top: 6px;
 }
 
 .switch-label { font-size: 14px; font-weight: 700; }
@@ -269,7 +303,12 @@ body {
     border-radius: 11px;
     position: relative;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.15s ease, border-color 0.15s ease;
+}
+
+.switch-input:hover {
+    transform: scale(1.02);
+    border-color: var(--fn-neon-cyan);
 }
 
 .switch-input:checked { background: var(--fn-unreleased); border-color: var(--fn-unreleased); }
@@ -326,6 +365,23 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 15px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    background: rgba(24, 28, 37, 0.95);
+    border: 2px dashed var(--fn-border);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    color: #a0aec0;
+}
+
+.empty-state-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
 }
 
 .sprite-card {
