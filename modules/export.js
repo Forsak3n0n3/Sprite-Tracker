@@ -12,7 +12,7 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
     const masteredSprites = state.getMasteredSprites();
     
     let targetItems = [];
-    let titleL1 = "FORTNITE SPRITES TRACKER:";
+    let titleL1 = "SPRITES TRACKER:";
     let titleL2 = "";
     let fallbackTitleText = "";
     let titleColor = "#32cd32"; 
@@ -25,7 +25,7 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
         if (targetItems.length === 0) { alert("No collected sprites to export!"); return; }
     } else if (mode === 'missing') {
         targetItems = baseSprites.filter(s => !s.unreleased && !obtainedSprites.includes(s.id));
-        titleL1 = "FORTNITE SPRITES TRACKER:";
+        titleL1 = "SPRITES TRACKER:";
         titleL2 = "I'M LOOKING FOR THESE!";
         fallbackTitleText = "MISSING SPRITES";
         titleColor = "#ef4444"; 
@@ -33,7 +33,7 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
         if (targetItems.length === 0) { alert("You aren't missing any released sprites!"); return; }
     } else if (mode === 'unmastered') {
         targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id) && !masteredSprites.includes(s.id));
-        titleL1 = "FORTNITE SPRITES TRACKER:";
+        titleL1 = "SPRITES TRACKER:";
         titleL2 = "UNMASTERED SPRITES";
         fallbackTitleText = "UNMASTERED";
         titleColor = "#00f0ff"; 
@@ -41,7 +41,7 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
         if (targetItems.length === 0) { alert("You don't have any unmastered sprites!"); return; }
     } else if (mode === 'mastered') {
         targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id) && masteredSprites.includes(s.id));
-        titleL1 = "FORTNITE SPRITES TRACKER:";
+        titleL1 = "SPRITES TRACKER:";
         titleL2 = "MASTERED SPRITES";
         fallbackTitleText = "MASTERED";
         titleColor = "#ffd700"; 
