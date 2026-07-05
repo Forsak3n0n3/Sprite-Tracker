@@ -159,7 +159,7 @@ body {
     background: linear-gradient(90deg, #e6b800, var(--fn-mastered));
 }
 
-.share-btn, .image-btn, .missing-image-btn, .unmastered-image-btn, .mastered-image-btn {
+.share-btn, .image-btn, .missing-image-btn, .unmastered-image-btn, .mastered-image-btn, .export-json-btn, .import-json-btn {
     font-size: 20px;
     font-weight: 700;
     font-style: italic;
@@ -178,12 +178,16 @@ body {
 .missing-image-btn { border-right: 4px solid var(--fn-unreleased); background: linear-gradient(90deg, transparent, rgba(239,68,68,0.15)); }
 .unmastered-image-btn { border-right: 4px solid var(--fn-neon-cyan); background: linear-gradient(90deg, transparent, rgba(0,240,255,0.15)); }
 .mastered-image-btn { border-right: 4px solid var(--fn-mastered); background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15)); }
+.export-json-btn { border-right: 4px solid #00aa88; background: linear-gradient(90deg, transparent, rgba(0,170,136,0.15)); }
+.import-json-btn { border-right: 4px solid #88aa00; background: linear-gradient(90deg, transparent, rgba(136,170,0,0.15)); }
 
 .share-btn:hover { background: linear-gradient(90deg, transparent, rgba(237,43,255,0.3)); border-color: rgba(255,255,255,0.2); }
 .image-btn:hover { background: linear-gradient(90deg, transparent, rgba(50,205,50,0.3)); border-color: rgba(255,255,255,0.2); }
 .missing-image-btn:hover { background: linear-gradient(90deg, transparent, rgba(239,68,68,0.3)); border-color: rgba(255,255,255,0.2); }
 .unmastered-image-btn:hover { background: linear-gradient(90deg, transparent, rgba(0,240,255,0.3)); border-color: rgba(255,255,255,0.2); }
 .mastered-image-btn:hover { background: linear-gradient(90deg, transparent, rgba(255,215,0,0.3)); border-color: rgba(255,255,255,0.2); }
+.export-json-btn:hover { background: linear-gradient(90deg, transparent, rgba(0,170,136,0.3)); border-color: rgba(255,255,255,0.2); }
+.import-json-btn:hover { background: linear-gradient(90deg, transparent, rgba(136,170,0,0.3)); border-color: rgba(255,255,255,0.2); }
 
 .app-layout {
     display: grid;
@@ -616,7 +620,9 @@ body {
     .nav-controls-right > .image-btn,
     .nav-controls-right > .missing-image-btn,
     .nav-controls-right > .unmastered-image-btn,
-    .nav-controls-right > .mastered-image-btn {
+    .nav-controls-right > .mastered-image-btn,
+    .nav-controls-right > .export-json-btn,
+    .nav-controls-right > .import-json-btn {
         display: flex;
         justify-content: center;
         font-size: 16px;
@@ -632,6 +638,8 @@ body {
     .missing-image-btn { border-bottom-color: var(--fn-unreleased) !important; }
     .unmastered-image-btn { border-bottom-color: var(--fn-neon-cyan) !important; }
     .mastered-image-btn { border-bottom-color: var(--fn-mastered) !important; }
+    .export-json-btn { border-bottom-color: #00aa88 !important; }
+    .import-json-btn { border-bottom-color: #88aa00 !important; }
 
     .panel-box {
         padding: 14px; 

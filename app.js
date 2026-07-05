@@ -338,7 +338,7 @@ function exportCanvasImage(mode) {
     let titleL2 = "";
     let fallbackTitleText = "";
     let titleColor = "#32cd32"; 
-    let fileName = "fnsprites-collection";
+    let fileName = "sprite-tracker-collection";
 
     if (mode === 'collected') {
         targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id));
@@ -351,7 +351,7 @@ function exportCanvasImage(mode) {
         titleL2 = "I'M LOOKING FOR THESE!";
         fallbackTitleText = "MISSING SPRITES";
         titleColor = "#ef4444"; 
-        fileName = "fnsprites-missing";
+        fileName = "sprite-tracker-missing";
         if (targetItems.length === 0) { alert("You aren't missing any released sprites!"); return; }
     } else if (mode === 'unmastered') {
         targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id) && !masteredSprites.includes(s.id));
@@ -359,7 +359,7 @@ function exportCanvasImage(mode) {
         titleL2 = "UNMASTERED SPRITES";
         fallbackTitleText = "UNMASTERED";
         titleColor = "#00f0ff"; 
-        fileName = "fnsprites-unmastered";
+        fileName = "sprite-tracker-unmastered";
         if (targetItems.length === 0) { alert("You don't have any unmastered sprites!"); return; }
     } else if (mode === 'mastered') {
         targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id) && masteredSprites.includes(s.id));
@@ -367,7 +367,7 @@ function exportCanvasImage(mode) {
         titleL2 = "MASTERED SPRITES";
         fallbackTitleText = "MASTERED";
         titleColor = "#ffd700"; 
-        fileName = "fnsprites-mastered";
+        fileName = "sprite-tracker-mastered";
         if (targetItems.length === 0) { alert("You don't have any mastered sprites!"); return; }
     }
 
