@@ -11,6 +11,11 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
     const obtainedSprites = state.getObtainedSprites();
     const masteredSprites = state.getMasteredSprites();
     
+    const visibleSprites = filterSettings ? filters.applyFilters(baseSprites, {
+        ...filterSettings,
+        status: 'all'
+    }) : baseSprites;
+
     let targetItems = [];
     let titleL1 = "SPRITES TRACKER:";
     let titleL2 = "";
@@ -19,12 +24,12 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
     let fileName = "sprite-tracker-collection";
 
     if (mode === 'collected') {
-        targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id));
+        targetItems = visibleSprites.filter(s => obtainedSprites.includes(s.id));
         titleL2 = "MY COLLECTION";
         fallbackTitleText = "MY COLLECTION";
         if (targetItems.length === 0) { alert("No collected sprites to export!"); return; }
     } else if (mode === 'missing') {
-        targetItems = baseSprites.filter(s => !s.unreleased && !obtainedSprites.includes(s.id));
+        targetItems = visibleSprites.filter(s => !s.unreleased && !obtainedSprites.includes(s.id));
         titleL1 = "SPRITES TRACKER:";
         titleL2 = "I'M LOOKING FOR THESE!";
         fallbackTitleText = "MISSING SPRITES";
@@ -40,7 +45,7 @@ export function exportCanvasImage(mode, baseSprites, filterSettings) {
         fileName = "sprite-tracker-unmastered";
         if (targetItems.length === 0) { alert("You don't have any unmastered sprites!"); return; }
     } else if (mode === 'mastered') {
-        targetItems = baseSprites.filter(s => obtainedSprites.includes(s.id) && masteredSprites.includes(s.id));
+        targetItems = visibleSprites.filter(s => obtainedSprites.includes(s.id) && masteredSprites.includes(s.id));
         titleL1 = "SPRITES TRACKER:";
         titleL2 = "MASTERED SPRITES";
         fallbackTitleText = "MASTERED";
